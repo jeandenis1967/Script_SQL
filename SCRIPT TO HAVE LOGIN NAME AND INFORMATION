@@ -1,0 +1,13 @@
+SELECT  @@servername AS ServerNM,name AS UserNM, 
+ CASE WHEN isntname=1 THEN  CASE WHEN  isntgroup=1 THEN  'ADGroup' WHEN  isntuser=1 THEN  'ADUser' END  ELSE 'MssqlUser'  END AS  logintype, 
+ CASE WHEN sysadmin=1 THEN  'Y' ELSE  'N' END  AS sysadmin, 
+ CASE WHEN securityadmin=1 THEN  'Y' ELSE  'N' END  AS securityadmin, 
+ CASE WHEN serveradmin=1 THEN  'Y' ELSE  'N' END  AS  serveradmin, 
+ CASE WHEN setupadmin=1 THEN  'Y' ELSE  'N' END  AS setupadmin, 
+ CASE WHEN processadmin=1 THEN  'Y' ELSE  'N' END  AS processadmin, 
+ CASE WHEN diskadmin =1 THEN  'Y' ELSE  'N' END  AS diskadmin, 
+ CASE WHEN dbcreator=1 THEN  'Y' ELSE  'N' END  AS dbcreator, 
+ CASE WHEN bulkadmin=1 THEN  'Y' ELSE  'N' END  AS bulkadmin 
+ FROM master..syslogins 
+ WHERE name  NOT LIKE '##%'
+ ORDER BY  name
